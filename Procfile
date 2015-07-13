@@ -1,1 +1,1 @@
-web: npm install & node ./bin/www
+web: npm install && node ./bin/www

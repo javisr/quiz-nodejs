@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var partials = require('express-partials');
 
 var routes = require('./routes/index');
+var routes = require('./routes/author');
 var app = express();
 
 // view engine setup
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/author', routes);
 
 
 // catch 404 and forward to error handler

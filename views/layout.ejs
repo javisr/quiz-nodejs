@@ -21,6 +21,15 @@
     </nav>
     <section class="main" id="s1">
       <%- body %>
+      <% if(errors.length > 0){ %>
+        <section class="errors">
+            <ul>
+            <%  for (var e in errors) { %>
+              <li><%= errors[e].message %></li>
+            <% } %>
+            </ul>
+        </section>
+      <% } %>
     </section>
     <footer class="main" id="f1"> <a href="https://github.com/javisr/quiz" target="_blank">Proyecto Quiz @javisr</a> </footer>
   </div>

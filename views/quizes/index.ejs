@@ -5,9 +5,26 @@
 </form>
 <br>
 <hr>	
-	<% var i; for (i=0;i<quizes.length; i++){ %>
-<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a><br>
-	<% } %>
+<table>
+<% quizes.forEach(function(quiz){ %>
+  <tr>
+    <td><a href="/quizes/<%= quiz.id %>"><%= quiz.pregunta %></a></td>
+    <td><%= quiz.tematica %></td>
+    <td><a href="/quizes/<%= quiz.id %>/edit"><button type="button">Editar</button></a></td>
+    <td>
+      <form method="post" action="/quizes/<%= quiz.id %>?_method=delete">
+        <button type="submit" onClick="return confirm('borrar: <%= quiz.pregunta %>')">
+        Borrar
+        </button>
+      </form>
+
+  </tr>
+<% }); %>
+</table>
+
+<p>
+<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+</p>
 <hr>	
 <h4>Ultima búsqueda:</h4>
 <%= searched %>

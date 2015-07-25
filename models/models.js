@@ -30,45 +30,35 @@ var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
 exports.Quiz = Quiz; // exportar definición de tabla Quiz
 
-sequelize.sync()
-  .then(
-    function() { // ok(..) ejecuta el manejador una vez creada la tabla
-      Quiz.count()
-        .then(
-          function(count) {
-            if (count === 0) { // la tabla se inicializa solo si está vacía
-              Quiz.create({
-                  pregunta: 'Capital de Italia',
-                  respuesta: 'Roma'
-                })
-                .then(
-                  function() {
-                    console.log('Base de datos inicializada');
-                  },
-                  function(err) {
-                    console.log('Error create ' + err);
-                  }
-                );
-              Quiz.create({
-                  pregunta: 'Capital de Portugal',
-                  respuesta: 'Lisboa'
-                })
-                .then(
-                  function() {
-                    console.log('Base de datos inicializada');
-                  },
-                  function(err) {
-                    console.log('Error create ' + err);
-                  }
-                );
-            }
-          },
-          function(err) {
-            console.log('Error count ' + err);
-          }
-        );
-    },
-    function(err) {
-      console.log('Error sync ' + err);
-    }
-  );
+sequelize.sync().then(
+  function() {
+    Quiz.count().then(
+      function(count) {
+        if (count === 0) {
+          Quiz.bulkCreate([{
+            pregunta: "¿ Cual es el futuro de la web ?",
+            respuesta: "nodejs",
+            tematica: "tecnologia"
+          }, {
+            pregunta: "¿ Cual es la capital de Portugal ?",
+            respuesta: "Lisboa",
+            tematica: "otro"
+          }, {
+            pregunta: "¿ Cual es la capital de Italia ?",
+            respuesta: "Roma",
+            tematica: "otro"
+
+          }]).then(function() {
+            console.log("Base de datos inicializada");
+          });
+        }
+      },
+      function(err) {
+        console.log('Error count ' + err);
+      }
+    );
+  },
+  function(err) {
+    console.log('Error sync ' + err);
+  }
+);

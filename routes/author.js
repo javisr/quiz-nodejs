@@ -5,7 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res) {
   res.render('author', {
     author: 'Javier',
-    image: 'https://pbs.twimg.com/profile_images/447885469380919297/C3NpSfWl.jpeg'
+    image: 'https://pbs.twimg.com/profile_images/447885469380919297/C3NpSfWl.jpeg',
+    errors: []
   });
 });
 

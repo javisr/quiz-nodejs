@@ -7,11 +7,7 @@ var quizController = require('../controllers/quiz_controller');
 router.get('/', function(req, res) {
   res.render('index', {
     title: 'Quiz',
-    errors: [{
-      message: 'esto es un erros javierlito 1'
-    }, {
-      message: 'esto es un erros javierlito 2'
-    }]
+    errors: []
   });
 });
 

@@ -26,7 +26,8 @@ exports.index = function(req, res) {
 
   models.Quiz.findAll(sql).then(function(quizes) {
     res.render('quizes/index', {
-      quizes: quizes
+      quizes: quizes,
+      searched: req.query.search ? req.query.search : ''
     });
   });
 };

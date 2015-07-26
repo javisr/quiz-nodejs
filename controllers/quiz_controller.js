@@ -2,7 +2,14 @@ var models = require('../models/models.js');
 
 // AUTOLOAD
 exports.load = function(req, res, next, quizId) {
-  models.Quiz.findById(quizId).then(function(quiz) {
+  models.Quiz.find({
+    where: {
+      id: Number(quizId)
+    },
+    include: [{
+      model: models.Comment
+    }]
+  }).then(function(quiz) {
     if (quiz) {
       req.quiz = quiz;
       next();
@@ -23,7 +30,6 @@ exports.index = function(req, res) {
   if (req.query.search) {
     sql.where = ["pregunta LIKE ?", ('%' + req.query.search.replace(/\s/g, '%') + '%').replace(/%{2,}/g, '%')];
   }
-
   models.Quiz.findAll(sql).then(function(quizes) {
     res.render('quizes/index', {
       quizes: quizes,

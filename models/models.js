@@ -16,7 +16,6 @@ console.log('protocol ' + protocol);
 console.log('dialect ' + dialect);
 console.log('port ' + port);
 console.log('host ' + host);
-console.log('storage ' + storage);
 
 // Cargar Modelo ORM
 var Sequelize = require('sequelize');

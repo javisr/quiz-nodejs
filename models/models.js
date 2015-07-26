@@ -9,9 +9,14 @@ var dialect = (url[1] || null);
 var port = (url[5] || null);
 var host = (url[4] || null);
 var storage = process.env.DATABASE_STORAGE;
-console.log(url);
-console.log(storage);
-
+console.log('DB_name ' + DB_name);
+console.log('user ' + user);
+console.log('pwd' + pwd);
+console.log('protocol ' + protocol);
+console.log('dialect ' + dialect);
+console.log('port ' + port);
+console.log('host ' + host);
+console.log('storage ' + storage);
 
 // Cargar Modelo ORM
 var Sequelize = require('sequelize');

@@ -1,11 +1,7 @@
 var models = require('../models/models');
 
 exports.load = function(req, res, next, commentId) {
-  models.Comment.find({
-    where: {
-      id: Number(commentId)
-    }
-  }).then(function(comment) {
+  models.Comment.findById(Number(commentId)).then(function(comment) {
     if (comment) {
       req.comment = comment;
       next();
@@ -19,7 +15,6 @@ exports.load = function(req, res, next, commentId) {
 };
 
 exports.new = function(req, res) {
-
   res.render('comments/new', {
     quizid: req.params.quizId,
     errors: []

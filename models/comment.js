@@ -8,6 +8,10 @@ module.exports = function(Sequelize, DataTypes) {
           msg: "-> Falta comentario."
         }
       }
+    },
+    publicado: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 

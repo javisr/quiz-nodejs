@@ -5,11 +5,13 @@
 </form>
 <br>
 <hr>	
+
 <table>
 <% quizes.forEach(function(quiz){ %>
   <tr>
     <td><a href="/quizes/<%= quiz.id %>"><%= quiz.pregunta %></a></td>
     <td><%= quiz.tematica %></td>
+    <% if(session.user){ %>
     <td><a href="/quizes/<%= quiz.id %>/edit"><button type="button">Editar</button></a></td>
     <td>
       <form method="post" action="/quizes/<%= quiz.id %>?_method=delete">
@@ -17,14 +19,18 @@
         Borrar
         </button>
       </form>
-
+    </td>
+    <% } %>
   </tr>
 <% }); %>
 </table>
-
+<% if(session.user) { %>
 <p>
 <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
 </p>
+<% } %>
+
+
 <hr>	
 <h4>Ultima búsqueda:</h4>
 <%= searched %>

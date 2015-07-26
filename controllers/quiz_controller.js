@@ -30,7 +30,6 @@ exports.index = function(req, res) {
   if (req.query.search) {
     sql.where = ["pregunta LIKE ?", ('%' + req.query.search.replace(/\s/g, '%') + '%').replace(/%{2,}/g, '%')];
   }
-
   models.Quiz.findAll(sql).then(function(quizes) {
     res.render('quizes/index', {
       quizes: quizes,
@@ -42,10 +41,7 @@ exports.index = function(req, res) {
 
 // GET /quizes/:id
 exports.show = function(req, res) {
-  console.log('JAAAAAAAAAAAAAAAAAAAAAAAAAAA')
   models.Quiz.findById(req.params.quizId).then(function(quiz) {
-    console.log('JPPPPPPPPPPPPPPPPPPPPPPPPPPPPP')
-
     res.render('quizes/show', {
       quiz: req.quiz,
       errors: []
